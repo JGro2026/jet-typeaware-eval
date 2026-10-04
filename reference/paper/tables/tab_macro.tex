@@ -1,0 +1,21 @@
+\begin{table}[tbp]
+\caption{Which conclusions need the fair-share normalisation: the leader under P@$k$, macro-averaged recall (the mean of $R_t$@$k$ over the types) and FSR@$k$, the fair-share caps ($n_t$ when every cap equals the type size, in which case FSR equals macro recall, otherwise the common cap $k/T$), and Kendall's $\tau_b$ between the orderings of the nine detectors. Client ledgers at $k=100$, from the printed seed-mean per-type recalls (FSR of the seed-averaged type profile, midpoints of the rounding bounds; detectors within 0.005 of the macro-recall leader are listed together). Public ledger exact, mean over seeds.}
+\label{tab:macro}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}lllllcc@{}}
+\toprule
+ & & \multicolumn{3}{c}{Leader by} & \multicolumn{2}{c}{Kendall's $\tau_b$} \\
+\cmidrule(lr){3-5}\cmidrule(l){6-7}
+Ledger ($k$) & Cap $c_t$ & P@$k$ & Macro & FSR@$k$ & P, macro & macro, FSR \\
+\midrule
+C (100) & $n_t$ & kNN & VAE & VAE & 0.83 & 1.00 \\
+A (100) & $n_t$ & kNN & AE & AE & 0.65 & 1.00 \\
+B (100) & 20 & kNN & VAE, AE & kNN & 0.74 & 0.69 \\
+D (100) & 20 & PCA, AE, VAE & PCA, AE, VAE & kNN & 0.81 & 0.42 \\
+Public (100) & 12.5 & AE-emb & AE-emb & AE-emb & 0.94 & 0.94 \\
+Public (1,000) & $n_t$ & kNN & kNN & kNN & 1.00 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}

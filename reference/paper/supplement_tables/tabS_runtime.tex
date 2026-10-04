@@ -1,0 +1,25 @@
+\begin{table}[tbp]
+\caption{Wall-clock seconds for one detector fit (2 CPU cores, 7 GB RAM, no GPU). Client ledgers: core-grid cells of the first execution of the benchmark, the one whose hardware is documented, mean over 5 seeds on ledgers C, A and B and over 3 seeds on ledger D. Public ledger: mean over the runs of a detector (three seeds for the stochastic detectors and the supervised reference), on two CPU cores. On ledger D and on the public ledger the three networks train for 30 epochs with batch 256 instead of 100 epochs with batch 64, so their times there are not comparable with ledgers C, A and B. n/a: not timed.}
+\label{tab:s-runtime}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{Client ledgers} & Public \\
+\cmidrule(lr){2-5}
+Detector & C & A & B & D & ledger \\
+\midrule
+IF & 14.1 & 14.7 & 0.6 & 9.8 & 5.1 \\
+LOF & 0.1 & 0.1 & 1.5 & 1,022.6 & 478.2 \\
+kNN & 0.0 & 0.1 & 1.5 & 1,029.0 & 467.1 \\
+HBOS & 1.3 & 1.3 & 0.2 & 10.5 & 4.6 \\
+ECOD & 0.1 & 0.1 & 0.4 & 25.1 & 4.8 \\
+PCA & 0.0 & 0.0 & 0.2 & 16.7 & 1.2 \\
+AE & 24.6 & 36.9 & 144.4 & 282.8 & 297.9 \\
+VAE & 18.6 & 29.6 & 127.2 & 286.9 & 268.4 \\
+AE-emb & 20.2 & 37.6 & 150.4 & 5,179.4 & 182.1 \\
+\addlinespace
+\textit{LightGBM reference} & n/a & n/a & n/a & n/a & 40.3 \\
+\bottomrule
+\end{tabular}
+\end{table}

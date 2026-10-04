@@ -1,0 +1,103 @@
+% Descriptive text of the anomaly types, the markings, the detector settings and the field mapping of the public
+% ledger. make_tables.py reads the table rows below (by label) for the definitions and settings it prints; the
+% numbers in the paper's tables are computed from data, not taken from here. Source: the authors' earlier
+% write-up of the same frozen benchmark protocol (harness/protocol.md).
+
+
+\begin{table}[tbp]
+\caption{Anomalies of the two label sources. (a) The five types injected into the real ledgers, their share of the injected rows, the difficulty parameter (easy, medium, hard; T3 and T4 have a single level) and their place in the anomaly typology of Foorthuis, whose subtypes are Ia extreme tail value, IIa unusual class and Va uncommon class combination. Each sampled posting is modified in place and carries at most one type. (b) The eight markings of the DIB ledger with the definition and the entry counts of its dataset paper, recomputed from the published file; the marking usually combines the stated modification with an unusual user. Six markings were injected into the population that one of the four journal entry testing rules returns; the shadow bank account and the cross-linked clearing were injected without conditioning on a rule, and 63.3 and 70.0 percent of them fall outside every rule population.}
+\label{tab:types}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}r>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.21\linewidth}@{}}
+\toprule
+\multicolumn{5}{@{}l}{\textit{(a) Types injected into the real ledgers}} \\
+\addlinespace
+Type & Modification of a sampled real posting & \makecell[r]{Share\\(\%)} & Difficulty & Foorthuis type (subtype) \\
+\midrule
+T1 extreme amount & amount z-score set to $\pm f\,P_{99.9}(|z|)$ with a random sign & 40 & $f = 5, 2, 1$ & I uncommon number (Ia) \\
+T2 extreme payment period & payment period set to $f\,P_{99.9}$, rows with an observed period only & 20 & $f = 5, 2, 1$ & I uncommon number (Ia) \\
+T3 unseen contra account & contra account replaced by a fresh id, one distinct id per row & 8 & none & II uncommon class (IIa) \\
+T4 unseen account & account replaced by a fresh id, one distinct id per row & 8 & none & II uncommon class (IIa) \\
+T5 unusual account pair & (account, contra account) replaced by a pair that never occurs in the ledger and whose members each occur at least $F$ times & 24 & $F = 50, 20, 5$ & V multidimensional categorical (Va) \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{(b) Markings of the DIB ledger, defined by its generator}} \\
+\addlinespace
+Marking & Definition & \makecell[r]{Anomalous\\entries} & \multicolumn{2}{@{}l}{JET population} \\
+\midrule
+M1 high amount & one of the 1,000 highest-amount entries of a fiscal year, account and user changed into an unusual combination & 120 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{J1 top-n highest postings} \\
+M2 high cash disbursement & cash posting above EUR 1,500 with the user changed & 60 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{J2 high cash disbursements} \\
+M3 delayed entry & entry lag of 10 to 29 days (less prompt class), usually with an unusual user & 120 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{J3 delayed postings} \\
+M4 very delayed entry & entry lag above 29 days (not at all prompt class), usually with an unusual user & 120 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{J3 delayed postings} \\
+M5 non-working hours & posting outside working hours in an under-represented user pattern & 100 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{J4 off-hours or weekend} \\
+M6 weekend & weekend posting with an unusual user and account context & 250 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{J4 off-hours or weekend} \\
+M7 shadow bank account & posting rerouted to a rarely used second bank account & 60 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{none (pattern A1)} \\
+M8 cross-linked clearing & clearing posting whose reference points to a business transaction of an unrelated category & 20 & \multicolumn{2}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth}}{none (pattern A2)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[tbp]
+\caption{Detectors, transparent reference, supervised ceiling and feedback methods with their frozen settings, which are never tuned on the labels; every method returns a continuous score, higher meaning more anomalous. IF to VAE are the PyOD implementations, AE-emb and DeepSAD our PyTorch code and the ceiling is LightGBM. On ledger D and on the DIB ledger the three networks train for 30 epochs with batch 256, the deviation the protocol grants at that scale, and on the DIB ledger the cross-fitting folds of the ceiling are grouped by journal entry.}
+\label{tab:detectors}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.145\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.435\linewidth}@{}}
+\toprule
+\multicolumn{4}{@{}l}{\textit{(a) Detectors, the transparent reference and the supervised ceiling}} \\
+\addlinespace
+Method & Family & Input & Settings \\
+\midrule
+IF & isolation, tree ensemble & $E_{\mathrm{base}}$ & 200 trees, 256 samples per tree \\
+LOF & local density & $E_{\mathrm{base}}$ & 20 neighbours, the row itself excluded \\
+kNN & distance to neighbours & $E_{\mathrm{base}}$ & distance to the fifth nearest other row \\
+HBOS & per-field histogram & $E_{\mathrm{base}}$ & 10 bins, $\alpha = 0.1$, tolerance 0.5 \\
+ECOD & empirical tail probability & $E_{\mathrm{base}}$ & no free parameters; computed column-chunked, scores identical to the library \\
+PCA & linear projection & $E_{\mathrm{base}}$ & components explaining 90 percent of the variance; score = sum of the distances to the retained eigenvectors divided by their explained-variance ratios \\
+AE & reconstruction, neural & $E_{\mathrm{base}}$ & layers 64, 32, 8, 32, 64; ReLU, batch normalisation, dropout 0.2; Adam $10^{-3}$, weight decay $10^{-5}$; 100 epochs, batch 64 \\
+VAE & reconstruction, variational & $E_{\mathrm{base}}$ & encoder 64, 32; latent dimension 8; decoder 32, 64; $\beta = 1$, dropout 0.2; 100 epochs, batch 64 \\
+AE-emb & reconstruction with entity embeddings & $E_{\mathrm{emb}}$ & embeddings 10, 10, 1, 1, 1; encoder 64, 32, 8 with LeakyReLU 0.01, symmetric decoder; one squared-error head for the numeric block and one cross-entropy head per categorical field; Adam $10^{-3}$; 100 epochs, batch 64 \\
+DECOMP & transparent per-field reference & raw fields & largest of the rank percentiles of $s_{\mathrm{amt}}$, $s_{\mathrm{pay}}$, $s_{\mathrm{cat}}$, $s_{\mathrm{pair}}$ and $s_{\mathrm{user}}$; robust deviations within the account when it holds at least 30 rows; no fitted parameters \\
+AVG & rank-average ensemble & detector scores & mean of the rank percentiles of the ten detectors above \\
+LightGBM ceiling & supervised gradient boosting & $E_{\mathrm{base}}$ and the labels & library defaults, positive rows weighted by the ratio of negative to positive rows; five-fold stratified cross-fitting, out-of-fold probability as score \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{(b) Feedback methods, four rounds of 25 reviewed rows}} \\
+\addlinespace
+Method & Family & \multicolumn{2}{@{}l}{Settings} \\
+\midrule
+STATIC-AVG & no learning & \multicolumn{2}{@{}p{0.545\linewidth}}{the AVG ranking in every round} \\
+LinTS & linear Thompson sampling & \multicolumn{2}{@{}p{0.545\linewidth}}{context: the ten detector percentiles and an intercept; Bayesian linear regression with noise variance 1; prior mean at the AVG weights, prior variance 0.01 for the detector weights and $10^{6}$ for the intercept; one posterior draw per round} \\
+GREEDY-LR & penalised logistic regression & \multicolumn{2}{@{}p{0.545\linewidth}}{same context; $L_2$ penalty with $C = 1$ centred at the AVG weights, intercept unpenalised; refitted after every round} \\
+LinTS-textbook & linear Thompson sampling, literal protocol settings & \multicolumn{2}{@{}p{0.545\linewidth}}{prior $\mathcal{N}(\mathbf{0}, I)$ on all eleven coordinates} \\
+GREEDY-LR-textbook & penalised logistic regression, literal protocol settings & \multicolumn{2}{@{}p{0.545\linewidth}}{$L_2$ penalty towards zero on all eleven coordinates, intercept penalised like a detector weight} \\
+DeepSAD & semi-supervised deep one-class & \multicolumn{2}{@{}p{0.545\linewidth}}{network = the embedding layers and encoder of the AE-emb model of the same cell, initialised from its trained weights; $\eta = 1$, $\varepsilon = 10^{-6}$; Adam $10^{-4}$, 50 epochs, batch 128, retrained in every round; round 1 = the AE-emb ranking} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[tbp]
+\caption{Mapping of the benchmark onto the DIB ledger, field by field. The frozen protocol needs the eleven columns of the real ledgers; the table states which field of the public ledger takes each role, what had to be derived and what was added because the DIB ledger records timestamps. The rule attributes of the dataset are excluded from every feature set, as its authors recommend, which is why the ranking inside a rule population in Table~\ref{tab:dib-within} cannot use them. All detector settings are those of ledger D.}
+\label{tab:dib-mapping}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.29\linewidth}>{\raggedright\arraybackslash}p{0.42\linewidth}@{}}
+\toprule
+Role & Real ledgers (DATEV) & DIB ledger \\
+\midrule
+Scored row & one posting & one posting line  \\
+Evaluated unit & one posting & one journal entry; its score is the maximum over its lines, and labels are constant within an entry  \\
+Account & \texttt{Kontonummer} & \texttt{gl\_account}  \\
+Contra account & \texttt{Gegenkonto} & derived: the account of the largest-amount line on the opposite side of the same entry, 21 levels  \\
+Amount & \texttt{Umsatz\_mod\_z}, the modified z-score supplied with the data & \texttt{amount}; $\log(1+x)$ and standardised in the encodings, the raw amount in the $s_{\mathrm{amt}}$ component of DECOMP  \\
+Payment period & \texttt{Zahlungszeitraum} & entry lag in days, \texttt{entered\_date} minus \texttt{document\_date}; used in the encodings and in the $s_{\mathrm{pay}}$ component of DECOMP  \\
+Currency & \texttt{W\"ahrung} & debit or credit flag (\texttt{cd\_flag})  \\
+Tax code & \texttt{Steuersatz} & \texttt{tax\_rate}  \\
+User & \texttt{Benutzererkennung} & \texttt{user}  \\
+Round amount flag & \texttt{Umsatz\_Smooth} & amount a multiple of EUR 10  \\
+Document date outside the fiscal year & \texttt{Abweichung Belegdatum zum WJ} & document date in a different year than the posting date (constant 0 here)  \\
+Posting text present & \texttt{Buchungstext nicht Leer} & free-text field non-empty (constant 1 here)  \\
+Time of entry & no counterpart: the real ledgers carry no timestamps & added: sine and cosine of the hour and of the weekday of the entry timestamp, as in the preprocessing of the dataset paper  \\
+Never used as a feature & the posting key \texttt{BUCHUNGS\_GUID} & the precomputed rule attributes \texttt{promptly}, \texttt{weekend}, \texttt{nwh}, \texttt{top\_n} and \texttt{high\_cash}, the \texttt{label} and \texttt{marking}, \texttt{posting\_id} and \texttt{ref\_id}, the free text and the account name  \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,36 @@
+\begin{table}[tbp]
+\caption{Auditor reviews fed back to DeepSAD. (a) Anomalies found after 25, 50, 75 and 100 reviews (four rounds of 25), mean over seeds with the standard deviation of the final count, against the anomalies among the first 100 units of AE-emb, the list the same reviews follow if the ranking stays static, and of the static detector with the most hits; the gain is that of the adaptive review protocol over the static AE-emb ranking. Client ledgers: core grid, five seeds; the static counts are 100 times the printed P@100 and exact to within 0.5. Public ledger: three seeds, units are journal entries. Public, control: the same protocol with the revealed labels withheld from the retraining, added in revision outside the frozen protocol. (b) Public ledger: markings among the 100 reviewed entries, with and without labels, and among the first 100 entries of AE-emb, mean over three seeds, with type coverage TC@100 and fair-share type recall FSR@100; $n_t$ is the number of entries per marking.}
+\label{tab:feedback}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.4pt}
+\begin{tabular}{@{}lrrrrrrll@{}}
+\multicolumn{9}{@{}l}{\textit{(a) Anomalies found in 100 reviews}} \\
+\toprule
+ & \multicolumn{4}{c}{DeepSAD, after $r$ reviews} & \multicolumn{2}{c}{AE-emb, first 100} & \multicolumn{2}{c}{Most hits, first 100} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-7}\cmidrule(l){8-9}
+Ledger & 25 & 50 & 75 & 100 & Found & Gain & Detector & Found \\
+\midrule
+C & 3.0 & 21.0 & 26.2 & 29.4 (4.6) & 12 (2) & 17.4 & kNN & 40 \\
+A & 8.8 & 29.0 & 40.6 & 47.0 (3.0) & 19 (1) & 28.0 & kNN & 29 \\
+B & 8.0 & 23.4 & 39.4 & 57.6 (11.7) & 23 (7) & 34.6 & kNN & 42 \\
+D & 10.2 & 29.4 & 52.8 & 76.0 (8.9) & 27 (11) & 49.0 & PCA, AE, VAE & 98 \\
+Public & 9.0 & 27.7 & 50.7 & 68.3 (3.8) & 40.0 (22.7) & 28.3 & AE-emb & 40.0 \\
+Public, control & 9.0 & 22.0 & 33.7 & 40.3 (18.6) & 40.0 (22.7) & 0.3 & AE-emb & 40.0 \\
+\bottomrule
+\end{tabular}
+
+\vspace{1.2em}
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrrrrrrrrr@{}}
+\multicolumn{12}{@{}l}{\textit{(b) Public ledger: markings among 100 entries}} \\
+\toprule
+ & M1 & M2 & M3 & M4 & M5 & M6 & M7 & M8 & Hits & TC@100 & FSR@100 \\
+\midrule
+$n_t$ & 120 & 60 & 120 & 120 & 100 & 250 & 60 & 20 & 850 & 8 & \\
+AE-emb, first 100 & 24.0 & 0 & 0 & 1.0 & 2.3 & 0 & 12.7 & 0 & 40.0 & 2.7 & 0.22 \\
+DeepSAD, reviewed & 24.0 & 0 & 0 & 2.0 & 2.3 & 0 & 40.0 & 0 & 68.3 & 3.0 & 0.23 \\
+Control, reviewed & 19.7 & 0 & 0 & 0.7 & 1.7 & 0 & 18.3 & 0 & 40.3 & 3.3 & 0.23 \\
+\bottomrule
+\end{tabular}
+\end{table}

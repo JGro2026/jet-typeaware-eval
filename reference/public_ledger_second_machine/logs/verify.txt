@@ -1,0 +1,10 @@
+metrics_mean.csv: 14 rows compared, max |deviation| = 0.0944 at ('AE-emb', 'R100_M1')
+metrics_sd.csv: 14 rows compared, max |deviation| = 0.1925 at ('AE-emb', 'R100_M7')
+within_population.csv: 4 rows compared, max |deviation| = 0.1600 at ('J4 weekend or non-working hours', 'P@25')
+top100_fill.csv: 14 rows compared, max |deviation| = 46.0000 at ('AE-emb', 'normal with rare account (<1000 lines)')
+feedback_deepsad_s0.json: max |deviation| = 18.000
+feedback_deepsad_s1.json: max |deviation| = 44.000
+feedback_deepsad_s2.json: max |deviation| = 6.000
+feedback_linear_s0.json: max |deviation| = 21.000
+feedback_linear_s1.json: max |deviation| = 42.000
+feedback_linear_s2.json: max |deviation| = 30.000

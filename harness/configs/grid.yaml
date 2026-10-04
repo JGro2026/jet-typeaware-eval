@@ -1,0 +1,74 @@
+# Experimental grid, Section 3.7. Cells are (table, contamination, difficulty, seed).
+# Detector names refer to src/detectors.py. Feedback methods and the ceiling run
+# on the core grid only (WP3).
+
+detectors_all: &detectors_all
+  [IF, LOF, kNN, HBOS, ECOD, PCA, AE-pyod, VAE-pyod, AE-emb, DECOMP, AVG]
+
+core: &core
+  tables: [C, A, B, D]
+  contamination: [0.015]
+  difficulty: [medium]
+  seeds: [0, 1, 2, 3, 4]
+  detectors: *detectors_all
+  ablation: false
+  ceiling: true
+  save_models: true
+  feedback: [STATIC-AVG, LinTS, GREEDY-LR, LinTS-spec, GREEDY-LR-spec, DeepSAD]
+  subsample_lof_knn: {D: false}   # WP2 probe: full kNN and LOF on D take 13 and ~20 min, no subsampling needed
+
+# The core grid split by table group so that the A, B, C part can run while the Table-D part awaits its decision
+core_ABC:
+  <<: *core
+  tables: [C, A, B]
+core_D:
+  <<: *core
+  tables: [D]
+
+sweep:
+  tables: [C, A, B]
+  contamination: [0.005, 0.015, 0.03]
+  difficulty: [easy, medium, hard]
+  seeds: [0, 1, 2, 3, 4]
+  detectors: *detectors_all
+  ablation: true                    # IF+freq, LOF+freq, kNN+freq, ECOD+freq on E_freq
+  ceiling: false
+  save_models: false
+
+sweep_D:
+  tables: [D]
+  contamination: [0.005, 0.015, 0.03]
+  difficulty: [medium]
+  seeds: [0, 1, 2]
+  detectors: *detectors_all
+  ablation: false
+  ceiling: false
+  save_models: false
+  subsample_lof_knn: {D: false}
+
+smoke:
+  tables: [C]
+  contamination: [0.015]
+  difficulty: [medium]
+  seeds: [0]
+  detectors: *detectors_all
+  ablation: true
+  ceiling: true
+  save_models: true
+
+feedback:
+  rounds: 4
+  budget: 25
+  deepsad: {eta: 1.0, lr: 1.0e-4, weight_decay: 1.0e-6, epochs: 50, batch_size: 128}
+  deepsad_D: {}                     # Table-D overrides, only after the WP2 checkpoint decision
+  # Main settings (decided at the WP2 checkpoint, see protocol.md): prior / L2 centre at the uniform
+  # weights, unpenalised intercept, LinTS prior variance 0.01. The protocol's literal settings run
+  # alongside as LinTS-spec and GREEDY-LR-spec.
+  lints: {prior_var: 0.01, noise_var: 1.0, center: uniform, intercept: free}
+  greedy_lr: {C: 1.0, center: uniform, intercept: free}
+  lints_spec: {prior_var: 1.0, noise_var: 1.0, center: zero, intercept: penalised}
+  greedy_lr_spec: {C: 1.0, center: zero, intercept: penalised}
+
+optional:
+  t6_contextual: false
+  random_label_sensitivity: false

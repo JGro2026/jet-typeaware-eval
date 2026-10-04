@@ -1,0 +1,15 @@
+# Pinned to the versions used for all reported results (Python 3.11.15, Linux x86_64, CPU only)
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+scikit-learn==1.8.0
+pyod==3.6.5
+torch==2.14.0
+lightgbm==4.7.0
+pyarrow==25.0.1
+PyYAML==6.0.3
+scikit-posthocs==0.17.0
+statsmodels==0.15.0
+numba==0.67.0
+tqdm==4.70.1
+pytest==9.1.1

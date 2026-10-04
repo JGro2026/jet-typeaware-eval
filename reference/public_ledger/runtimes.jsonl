@@ -1,0 +1,22 @@
+{"det": "DECOMP", "seed": 0, "runtime_s": 0.87}
+{"det": "DECOMP+ctx", "seed": 0, "runtime_s": 1.08}
+{"det": "HBOS", "seed": 0, "runtime_s": 4.58}
+{"det": "ECOD", "seed": 0, "runtime_s": 4.84}
+{"det": "PCA", "seed": 0, "runtime_s": 1.2, "n_components": 46}
+{"det": "IF", "seed": 0, "runtime_s": 5.09}
+{"det": "IF", "seed": 1, "runtime_s": 5.11}
+{"det": "IF", "seed": 2, "runtime_s": 5.01}
+{"det": "LGBM-ceiling", "seed": 0, "runtime_s": 38.55}
+{"det": "LGBM-ceiling", "seed": 1, "runtime_s": 43.43}
+{"det": "LGBM-ceiling", "seed": 2, "runtime_s": 39.05}
+{"det": "kNN", "seed": 0, "runtime_s": 467.07}
+{"det": "LOF", "seed": 0, "runtime_s": 478.24}
+{"det": "AE-pyod", "seed": 0, "runtime_s": 305.42}
+{"det": "AE-pyod", "seed": 2, "runtime_s": 293.72}
+{"det": "VAE-pyod", "seed": 0, "runtime_s": 273.03}
+{"det": "VAE-pyod", "seed": 2, "runtime_s": 265.69}
+{"det": "AE-emb", "seed": 0, "runtime_s": 180.45}
+{"det": "AE-emb", "seed": 2, "runtime_s": 184.38}
+{"det": "AE-pyod", "seed": 1, "runtime_s": 294.58}
+{"det": "VAE-pyod", "seed": 1, "runtime_s": 266.52}
+{"det": "AE-emb", "seed": 1, "runtime_s": 181.42}

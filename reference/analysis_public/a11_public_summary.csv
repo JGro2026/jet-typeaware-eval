@@ -1,0 +1,3 @@
+ledger,k,P_leader,macro_leader,FSR_leader,tau_P_macro,tau_macro_FSR,tau_P_FSR
+public,100,AE-emb,AE-emb,AE-emb,0.9428571428571428,0.9428571428571428,1.0
+public,1000,kNN,kNN,kNN,1.0,1.0,1.0

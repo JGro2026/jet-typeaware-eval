@@ -1,0 +1,38 @@
+\begin{table}[tbp]
+\caption{Public ledger, recall per marking within the first 100 and the first 1,000 journal entries, mean over seeds for the stochastic detectors. Bold marks the best unsupervised detector per column (none where all are zero). M1 high amount, M2 high cash disbursement, M3 delayed entry, M4 very delayed entry, M5 non-working hours, M6 weekend, M7 shadow bank account, M8 cross-linked clearing; $n_t$ is the number of anomalous entries per marking.}
+\label{tab:s-marking}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+Detector & M1 & M2 & M3 & M4 & M5 & M6 & M7 & M8 \\
+\textit{$n_t$} & \textit{120} & \textit{60} & \textit{120} & \textit{120} & \textit{100} & \textit{250} & \textit{60} & \textit{20} \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{(a) Recall within the first 100 entries}} \\
+IF & 0.02 & \textbf{0.04} & 0.00 & 0.00 & 0.02 & 0.00 & 0.00 & 0.00 \\
+LOF & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.18 & 0.00 \\
+kNN & 0.02 & 0.00 & 0.00 & \textbf{0.07} & \textbf{0.03} & 0.00 & 0.07 & 0.00 \\
+HBOS & 0.02 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.03 & 0.00 \\
+ECOD & 0.02 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.03 & 0.00 \\
+PCA & 0.02 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.02 & 0.00 \\
+AE & 0.01 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.02 & 0.00 \\
+VAE & 0.01 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.02 & 0.00 \\
+AE-emb & \textbf{0.20} & 0.00 & 0.00 & 0.01 & 0.02 & 0.00 & \textbf{0.21} & 0.00 \\
+\addlinespace
+\textit{LightGBM reference} & 0.19 & 0.07 & 0.00 & 0.03 & 0.16 & 0.00 & 0.59 & 0.00 \\
+\midrule
+\multicolumn{9}{@{}l}{\textit{(b) Recall within the first 1,000 entries}} \\
+IF & 0.08 & 0.24 & \textbf{0.02} & 0.13 & 0.18 & 0.02 & 0.00 & \textbf{0.05} \\
+LOF & 0.13 & 0.00 & \textbf{0.02} & 0.00 & 0.09 & 0.00 & 0.78 & 0.00 \\
+kNN & 0.07 & 0.08 & 0.01 & \textbf{0.68} & \textbf{0.63} & 0.00 & 0.93 & 0.00 \\
+HBOS & 0.13 & \textbf{0.25} & 0.00 & 0.01 & 0.14 & \textbf{0.03} & 0.23 & \textbf{0.05} \\
+ECOD & 0.06 & 0.10 & 0.00 & 0.02 & 0.23 & 0.02 & 0.67 & 0.00 \\
+PCA & 0.02 & 0.03 & 0.00 & 0.25 & 0.07 & 0.00 & \textbf{1.00} & 0.00 \\
+AE & 0.02 & 0.01 & 0.00 & 0.29 & 0.12 & 0.00 & \textbf{1.00} & 0.00 \\
+VAE & 0.02 & 0.01 & 0.00 & 0.26 & 0.07 & 0.00 & \textbf{1.00} & 0.00 \\
+AE-emb & \textbf{0.47} & 0.02 & 0.00 & 0.08 & 0.29 & 0.00 & 0.98 & 0.00 \\
+\addlinespace
+\textit{LightGBM reference} & 0.97 & 0.59 & 0.43 & 0.96 & 0.97 & 0.79 & 0.98 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}

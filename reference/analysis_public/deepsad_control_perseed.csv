@@ -1,0 +1,10 @@
+seed,method,found25,found100,coverage,FSR100,M1,M2,M3,M4,M5,M6,M7,M8,found50,found75,runtime_s
+0,DeepSAD (100 reviews),6,71,3,0.235,5,0,0,0,6,0,60,0,23.0,48.0,
+0,AE-emb static top 100,6,19,2,0.135,0,0,0,0,1,0,18,0,,,
+1,DeepSAD (100 reviews),15,64,3,0.185,58,0,0,0,1,0,5,0,38.0,59.0,
+1,AE-emb static top 100,15,37,3,0.235,26,0,0,0,6,0,5,0,,,
+2,DeepSAD (100 reviews),6,70,3,0.275,9,0,0,6,0,0,55,0,22.0,45.0,
+2,AE-emb static top 100,6,64,3,0.28,46,0,0,3,0,0,15,0,,,
+0,"Control: same protocol, labels withheld",6,61,3,0.26,25,0,0,0,1,0,35,0,20.0,43.0,896.5
+1,"Control: same protocol, labels withheld",15,35,3,0.195,28,0,0,0,2,0,5,0,30.0,34.0,900.2
+2,"Control: same protocol, labels withheld",6,25,4,0.22499999999999998,6,0,0,2,2,0,15,0,16.0,24.0,860.2

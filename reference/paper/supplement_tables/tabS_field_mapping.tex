@@ -1,0 +1,26 @@
+\begin{table}[tbp]
+\caption{Mapping of the benchmark onto the public ledger, field by field. The protocol expects the eleven columns of the client ledgers; the table states which field of the public ledger takes each role, what had to be derived and what was added because the public ledger records timestamps. The rule attributes supplied with the dataset are excluded from every feature set, as its authors recommend. All detector settings are those of ledger D.}
+\label{tab:s-mapping}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.3\linewidth}>{\raggedright\arraybackslash}p{0.42\linewidth}@{}}
+\toprule
+Role & Client ledgers & Public ledger \\
+\midrule
+Scored row & one posting & one posting line \\
+Evaluated unit & one posting & one journal entry; its score is the maximum over its lines, and labels are constant within an entry \\
+Account & \texttt{Kontonummer} & \texttt{gl\_account} \\
+Contra account & \texttt{Gegenkonto} & derived: the account of the largest-amount line on the opposite side of the same entry, 21 levels \\
+Amount & \texttt{Umsatz\_mod\_z}, the modified z-score supplied with the data & \texttt{amount}; $\log(1+x)$ and standardised in the encodings \\
+Payment period & \texttt{Zahlungszeitraum} & entry lag in days, \texttt{entered\_date} minus \texttt{document\_date}; used in the encodings \\
+Currency & \texttt{W\"ahrung} & debit or credit flag (\texttt{cd\_flag}) \\
+Tax code & \texttt{Steuersatz} & \texttt{tax\_rate} \\
+User & \texttt{Benutzererkennung} & \texttt{user} \\
+Round amount flag & \texttt{Umsatz\_Smooth} & amount a multiple of EUR 10 \\
+Document date outside the fiscal year & \texttt{Abweichung Belegdatum zum WJ} & document date in a different year than the posting date (constant 0 here) \\
+Posting text present & \texttt{Buchungstext nicht Leer} & free-text field non-empty (constant 1 here) \\
+Time of entry & no counterpart: the client ledgers carry no timestamps & added: sine and cosine of the hour and of the weekday of the entry timestamp, as in the preprocessing of the dataset paper \\
+Never used as a feature & the posting key \texttt{BUCHUNGS\_GUID} & the precomputed rule attributes \texttt{promptly}, \texttt{weekend}, \texttt{nwh}, \texttt{top\_n} and \texttt{high\_cash}, the \texttt{label} and \texttt{marking}, \texttt{posting\_id} and \texttt{ref\_id}, the free text and the account name \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,8 @@
+# raw data (never committed: the public ledger is on Zenodo, the client ledgers are confidential)
+data/*.csv
+data/client/
+# everything the code produces
+output/
+output_quick/
+__pycache__/
+*.pyc

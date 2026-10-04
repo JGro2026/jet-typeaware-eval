@@ -1,0 +1,37 @@
+\begin{table}[tbp]
+\caption{Anomaly types and markings. (a) Types injected into the client ledgers, with their subtype in the typology of \citet{foorthuis2021nature}, the difficulty parameter for the levels easy, medium and hard, and the number $n_t$ of injected rows in the core grid. (b) Markings of the public ledger, the rule population into which each was injected, and $n_t$.}
+\label{tab:types}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.47\linewidth}r@{}}
+\toprule
+\multicolumn{3}{@{}l}{\textit{(a) Types injected into the client ledgers}} \\
+Type (Foorthuis subtype) & Modification of a sampled posting & $n_t$: C / A / B / D \\
+\midrule
+T1 extreme amount (Ia) & amount z-score set to $\pm f\,P_{99.9}(|z|)$ with a random sign; $f = 5, 2, 1$ & 22 / 31 / 105 / 1,680 \\
+T2 extreme payment period (Ia) & payment period set to $f\,P_{99.9}$, rows with an observed period only; $f = 5, 2, 1$ & 10 / 15 / 53 / 840 \\
+T3 unseen contra account (IIa) & contra account replaced by a fresh id, one distinct id per row & 4 / 6 / 21 / 336 \\
+T4 unseen account (IIa) & account replaced by a fresh id, one distinct id per row & 4 / 6 / 21 / 336 \\
+T5 unusual account pair (Va) & (account, contra account) replaced by a pair that never occurs in the ledger and whose members each occur at least $F$ times; $F = 50, 20, 5$ & 12 / 18 / 63 / 1,008 \\
+\bottomrule
+\end{tabular}
+
+\medskip
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.56\linewidth}lr@{}}
+\toprule
+\multicolumn{4}{@{}l}{\textit{(b) Markings of the public ledger, defined by its generator}} \\
+Marking & Definition & Rule & $n_t$ \\
+\midrule
+M1 high amount & one of the 1,000 highest-amount entries of a fiscal year, account and user changed into an unusual combination & J1 & 120 \\
+M2 high cash disbursement & cash posting above EUR 1,500 with the user changed & J2 & 60 \\
+M3 delayed entry & entry lag of 10 to 29 days (less prompt class), usually with an unusual user & J3 & 120 \\
+M4 very delayed entry & entry lag above 29 days (not at all prompt class), usually with an unusual user & J3 & 120 \\
+M5 non-working hours & posting outside working hours in an under-represented user pattern & J4 & 100 \\
+M6 weekend & weekend posting with an unusual user and account context & J4 & 250 \\
+M7 shadow bank account & posting rerouted to a rarely used second bank account & none & 60 \\
+M8 cross-linked clearing & clearing posting whose reference points to a business transaction of an unrelated category & none & 20 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\parbox{\linewidth}{\scriptsize Subtypes: Ia extreme tail value, IIa unusual class, Va uncommon class combination. Rule populations: J1 top-n amounts, J2 high cash, J3 delayed entry, J4 weekend or non-working hours.}
+\end{table}

@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\caption{Sensitivity of FSR@$k$ to the type weights (\ref{app:weights}). (a) Client ledgers at $k=100$: the leader by P@100, the FSR leader under equal weights, the number of the eleven structured schemes (equal weights and each type doubled or halved) in which a reversal between the P@100 leader and FSR is fixed by the rounding bounds, the schemes that are exceptions, and the share of 300 random weight vectors (each weight between half and twice its equal value) with a reversal fixed by the bounds. (b) Public ledger: the FSR leader under equal weights, the number of the seventeen structured schemes in which it stays the FSR leader, the smallest Kendall $\tau_b$ between the orderings by P@$k$ and FSR@$k$ over these schemes, and, over 2,000 random vectors, the share in which the equal-weight FSR leader stays the leader and the median $\tau_b$.}
+\label{tab:app-weights}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.14\textwidth}@{}}
+\multicolumn{6}{@{}l}{\textit{(a) Client ledgers, $k=100$}} \\
+\toprule
+Ledger & P@100 leader & FSR leader, equal weights & Reversal fixed (of 11 schemes) & Exceptions & Random vectors with reversal fixed \\
+\midrule
+C & kNN & VAE & 10 & T4 halved & 91\% \\
+A & kNN & AE & 11 & none & 89\% \\
+B & kNN & kNN (no reversal) & 2 & reversal to VAE when T1 is halved or T4 doubled & 26\% \\
+D & PCA, AE, VAE & kNN & 9 & T1 halved, T4 doubled (undetermined) & 63\% \\
+\bottomrule
+\end{tabular}
+
+\vspace{1em}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.1\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.1\textwidth}>{\raggedright\arraybackslash}p{0.13\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
+\multicolumn{7}{@{}l}{\textit{(b) Public ledger}} \\
+\toprule
+$k$ & P@$k$ leader & FSR leader, equal weights & FSR leader kept (of 17 schemes) & Smallest $\tau_b$ & Random vectors with leader kept & Median $\tau_b$, random \\
+\midrule
+100 & AE-emb & AE-emb & 16 (kNN when M4 is doubled) & 0.94 & 84\% & 1.00 \\
+1,000 & kNN & kNN & 17 & 0.83 & 98\% & 0.94 \\
+\bottomrule
+\end{tabular}
+\end{table}

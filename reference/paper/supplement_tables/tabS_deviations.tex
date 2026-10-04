@@ -1,0 +1,22 @@
+\begin{table}[tbp]
+\caption{Protocol deviations and implementation notes. None changes an injection definition, a metric or a detector hyperparameter on ledgers C, A and B, and each is recorded per cell in the harness output.}
+\label{tab:s-deviations}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.76\linewidth}@{}}
+\toprule
+Area & Deviation or implementation note \\
+\midrule
+Injection & Ledger A, easy level, $c = 3$\,\%: the pool holds 19 valid account pairs for the 36 T5 rows the cell needs, so 17 rows reuse a pair. The protocol permits drawing with replacement once the pool is exhausted; the reuse is recorded per cell. \\
+Typology & The protocol called T5 a multidimensional mixed-data anomaly (Foorthuis Type VI). T5 changes two categorical fields only, so it is classified as Type V, subtype Va. \\
+PCA & The score is PyOD's own: the sum of the distances between the standardised row and the retained eigenvectors, each divided by its explained-variance ratio, not a literal reconstruction error. The covariance eigensolver replaces the full singular value decomposition (same components, scores agree to $4\times10^{-4}$ relative or better, identical P@$k$ and AP). \\
+ECOD & PyOD's algorithm recomputed column chunk by column chunk, because the library implementation exhausts memory on ledger D; maximum difference to the library $10^{-14}$ on ledgers C, A and B. Used on every ledger. \\
+Networks on ledger D & AE, VAE and AE-emb train with batch 256 for 30 epochs instead of batch 64 for 100; the protocol grants this for AE-emb, and a runtime probe extended it to the two PyOD networks. \\
+Execution on ledger D & One thread per process for the linear algebra libraries and PyTorch; every detector runs in a checkpointing worker process; LOF and kNN are fitted on all 279,975 rows, the subsampling rule being implemented but never triggered. Scores are unaffected. \\
+Not run & The optional contextual extreme-amount type and the random-label sensitivity analysis were not run. The contamination and difficulty sweep covers ledgers C, A and B; every ledger D result is at $c = 1.5$\,\% and medium difficulty. \\
+Public ledger & Networks at the ledger D setting; stochastic detectors on seeds 0 to 2; sine and cosine of the hour and weekday of the entry timestamp added to the encodings; posting lines are scored and journal entries evaluated (maximum over the lines); budget $k = 1{,}000$ added; contra account derived; rule attributes excluded; cross-fitting folds of the supervised reference grouped by entry. \\
+Analysis & The Friedman test uses the 27 seed-averaged sweep cells of ledgers C, A and B, because per-seed values of the sweep were not retained. The type-aware measures on the client ledgers are computed from seed-mean per-type recalls at $k = 100$ printed to two decimals and are reported with the bounds this rounding implies. \\
+Added in revision & A no-feedback control of the DeepSAD review protocol on the public ledger, seeds 0 to 2: the same initialisation, rounds, seeds, optimiser and retraining as the protocol run, with the revealed labels withheld from the retraining. It was run after the frozen experiments, is reported as a control only and changes no protocol result. \\
+\bottomrule
+\end{tabular}
+\end{table}

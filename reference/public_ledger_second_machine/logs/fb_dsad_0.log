@@ -1,0 +1,1 @@
+{"DeepSAD": {"found@25": 15, "found@50": 38, "found@75": 60, "found@100": 84, "final P@25": 1.0, "final P@50": 0.74, "final P@100": 0.4, "adaptive P@100": 0.84, "rev_M1": 23, "rev_M2": 0, "rev_M3": 0, "rev_M4": 0, "rev_M5": 1, "rev_M6": 0, "rev_M7": 60, "rev_M8": 0, "runtime_s": 534.5}}

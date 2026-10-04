@@ -1,0 +1,36 @@
+\begin{table}[tbp]
+\caption{Profile of the four client ledgers and the public synthetic ledger. Counts of accounts, contra accounts, tax codes and users are numbers of distinct values. A duplicate row repeats all feature values of another row. Anomalous units are the injected anomalies of the core grid (client ledgers) and the generator-labelled journal entries (public ledger).}
+\label{tab:data}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{Client ledgers} & Public \\
+\cmidrule(lr){2-5}
+Property & C & A & B & D & ledger \\
+\midrule
+Scored unit & posting & posting & posting & posting & line \\
+Evaluated unit & posting & posting & posting & posting & entry \\
+Scored rows & 3,461 & 5,080 & 17,505 & 279,975 & 256,232 \\
+Evaluated units & 3,461 & 5,080 & 17,505 & 279,975 & 102,429 \\
+Fiscal years & 1 & 1 & 1 & 1 & 2 \\
+\addlinespace
+Accounts & 18 & 23 & 48 & 24 & 25 \\
+Contra accounts & 159 & 608 & 362 & 12,359 & 21$^{a}$ \\
+Tax codes & 2 & 3 & 2 & 3 & 2 \\
+Users & 10 & 2 & 5 & 6 & 6 \\
+Payment period missing (\%) & 8.1 & 8.9 & 5.3 & 8.1 & 0.0$^{b}$ \\
+\addlinespace
+\multicolumn{6}{@{}l}{\textit{Duplicate rows}} \\
+\quad repeating an earlier row (\%) & 6.1 & 19.8 & 12.1 & 3.9 & 0.5 \\
+\quad in a duplicate group (\%) & 10.1 & 32.6 & 18.5 & 6.9 & 0.6 \\
+\quad in groups of six or more & 40 & 51 & 633 & 912 & 1,062 \\
+\addlinespace
+Anomalous units & 52 & 76 & 263 & 4,200 & 850 \\
+Anomalous units (\%) & 1.50 & 1.50 & 1.50 & 1.50 & 0.83 \\
+Anomaly classes & T1 to T5 & T1 to T5 & T1 to T5 & T1 to T5 & M1 to M8 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\parbox{\linewidth}{\scriptsize Percentages of duplicate rows refer to the scored rows. $^{a}$ Derived: the account of the largest-amount line on the opposite side of the same entry. $^{b}$ Entry lag, the counterpart of the payment period, is never missing.}
+\end{table}

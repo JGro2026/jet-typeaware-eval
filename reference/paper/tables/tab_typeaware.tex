@@ -1,0 +1,22 @@
+\begin{table}[tbp]
+\caption{What changes under the type-aware view. Per ledger: the detector with the highest P@$k$, its type coverage TC@$k$ and its FSR@$k$; the detector with the highest FSR@$k$; and Kendall's $\tau_b$ between the orderings of the nine detectors by P@$k$ and by FSR@$k$. Client ledgers: FSR of the seed-averaged type profile, with ranges given by the bounds that the two-decimal rounding implies; public ledger: mean of the per-seed values.}
+\label{tab:typeaware}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllllllr@{}}
+\toprule
+ & \multicolumn{4}{c}{Best by hits} & \multicolumn{2}{c}{Best by FSR@$k$} & \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-7}
+Ledger ($k$) & Detector & P@$k$ & TC@$k$ & FSR@$k$ & Detector & FSR@$k$ & $\tau_b$ \\
+\midrule
+C (100) & kNN & 0.40 & n/d & 0.57 & VAE & 0.65 & 0.83 \\
+A (100) & kNN & 0.29 & n/d & 0.29 & AE & 0.38 & 0.65 \\
+B (100) & kNN & 0.42 & n/d & 0.31--0.32 & kNN & 0.31--0.32 & 0.97--0.99 \\
+D (100) & \makecell[l]{PCA, AE,\\VAE} & 0.98 & n/d & 0.200--0.226 & kNN & 0.284--0.344 & 0.598--0.625 \\
+Public (100) & AE-emb & 0.40 & 2.7 & 0.22 & AE-emb & 0.22 & 1.00 \\
+Public (1,000) & kNN & 0.215 & 6 & 0.301 & kNN & 0.301 & 1.00 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\parbox{\linewidth}{\scriptsize n/d: not determined by the seed-mean recalls of the client ledgers (Section~\ref{sec:bench-protocol}). TC@$k$ counts types out of eight markings. Public ledger: exact, from the full rankings, mean over three seeds for the stochastic detectors.}
+\end{table}

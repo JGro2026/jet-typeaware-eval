@@ -1,0 +1,25 @@
+\begin{table}[tbp]
+\caption{Detectors, the supervised reference and DeepSAD with their settings, fixed in advance and never tuned on the labels; higher scores mean more anomalous. IF to VAE are PyOD implementations \citep{zhao2019pyod}, AE-emb and DeepSAD are our PyTorch code. $E_{\mathrm{base}}$ is the one-hot and standardised encoding, $E_{\mathrm{emb}}$ the integer-coded input of the embedding autoencoder.}
+\label{tab:detectors}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.12\linewidth}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.1\linewidth}>{\raggedright\arraybackslash}p{0.48\linewidth}@{}}
+\toprule
+Detector & Family & Input & Key settings \\
+\midrule
+IF & isolation, tree ensemble & $E_{\mathrm{base}}$ & 200 trees, 256 samples per tree \\
+LOF & local density & $E_{\mathrm{base}}$ & 20 neighbours, the row itself excluded \\
+kNN & distance to neighbours & $E_{\mathrm{base}}$ & distance to the fifth nearest other row \\
+HBOS & per-field histogram & $E_{\mathrm{base}}$ & 10 bins, $\alpha = 0.1$, tolerance 0.5 \\
+ECOD & empirical tail probability & $E_{\mathrm{base}}$ & no free parameters; computed column-chunked, scores identical to the library \\
+PCA & linear projection & $E_{\mathrm{base}}$ & components explaining 90 percent of the variance; score = sum of the distances to the retained eigenvectors divided by their explained-variance ratios \\
+AE & reconstruction, neural & $E_{\mathrm{base}}$ & layers 64, 32, 8, 32, 64; ReLU, batch normalisation, dropout 0.2; Adam $10^{-3}$, weight decay $10^{-5}$; 100 epochs, batch 64 \\
+VAE & reconstruction, variational & $E_{\mathrm{base}}$ & encoder 64, 32; latent dimension 8; decoder 32, 64; $\beta = 1$, dropout 0.2; 100 epochs, batch 64 \\
+AE-emb & reconstruction with entity embeddings & $E_{\mathrm{emb}}$ & embeddings 10, 10, 1, 1, 1; encoder 64, 32, 8 with LeakyReLU 0.01, symmetric decoder; one squared-error head for the numeric block and one cross-entropy head per categorical field; Adam $10^{-3}$; 100 epochs, batch 64 \\
+\midrule
+LightGBM reference & supervised gradient boosting & $E_{\mathrm{base}}$, labels & library defaults, positive rows weighted by the ratio of negative to positive rows; five-fold stratified cross-fitting, out-of-fold probability as score \\
+\midrule
+DeepSAD (review protocol) & semi-supervised deep one-class & $E_{\mathrm{emb}}$, reviewed labels & embedding layers and encoder of the AE-emb model of the same setting, initialised with its weights; $\eta = 1$, $\varepsilon = 10^{-6}$; Adam $10^{-4}$, weight decay $10^{-6}$; 50 epochs, batch 128; retrained before every round; round 1 = AE-emb ranking \\
+\bottomrule
+\end{tabular}
+\end{table}

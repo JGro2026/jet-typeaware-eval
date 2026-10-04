@@ -1,0 +1,9 @@
+{'det': 'DECOMP', 'seed': 0, 'runtime_s': 0.61}
+{'det': 'DECOMP+ctx', 'seed': 0, 'runtime_s': 0.91}
+{'det': 'HBOS', 'seed': 0, 'runtime_s': 3.04}
+/home/USER/da4jet-dib-replication/.venv/lib/python3.12/site-packages/pyod/models/ecod.py:23: RuntimeWarning: Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.
+  return np.nan_to_num(skew_sp(X, axis=axis))
+{'det': 'ECOD', 'seed': 0, 'runtime_s': 2.52}
+{'det': 'PCA', 'seed': 0, 'runtime_s': 0.67, 'n_components': 46}
+{'det': 'kNN', 'seed': 0, 'runtime_s': 406.0}
+{'det': 'LOF', 'seed': 0, 'runtime_s': 406.72}

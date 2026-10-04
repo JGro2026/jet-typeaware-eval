@@ -1,0 +1,75 @@
+\begin{table}[tbp]
+\caption{Recall within the first 100 postings per injected type ($R_t$@100) on the core grid of ledgers C and A, mean over five seeds as printed in the result tables, with the fair-share type recall FSR@100 derived from them. $n_t$ is the number of injected rows of type $t$ and the budget ceiling $\min(1, 100/n_t)$ the largest attainable $R_t$@100. Because the per-type recalls are seed means rounded to two decimals, FSR@100 is given as the tightest bounds consistent with the printed values and the printed P@100 (a single value where both bounds agree at the printed precision). Type coverage is not reported, because the seed-mean recalls do not determine it. T1 extreme amount, T2 extreme payment period, T3 unseen contra account, T4 unseen account, T5 unusual account pair.}
+\label{tab:s-pertype}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Detector & T1 & T2 & T3 & T4 & T5 & FSR@100 \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{(a) Ledger C}} \\
+\textit{$n_t$} & \textit{22} & \textit{10} & \textit{4} & \textit{4} & \textit{12} & \\
+IF & 0.12 & 0.16 & 0.05 & 0.00 & 0.00 & 0.07 \\
+LOF & 0.22 & 0.00 & 0.00 & 0.30 & 0.03 & 0.11 \\
+kNN & 1.00 & 1.00 & 0.15 & 0.10 & 0.58 & 0.57 \\
+HBOS & 0.06 & 0.04 & 0.05 & 0.10 & 0.03 & 0.06 \\
+ECOD & 0.20 & 0.12 & 0.05 & 0.50 & 0.02 & 0.18 \\
+PCA & 0.76 & 1.00 & 0.05 & 1.00 & 0.05 & 0.57 \\
+AE & 1.00 & 1.00 & 0.00 & 1.00 & 0.18 & 0.64 \\
+VAE & 1.00 & 1.00 & 0.00 & 1.00 & 0.27 & 0.65 \\
+AE-emb & 0.20 & 0.26 & 0.05 & 0.10 & 0.37 & 0.20 \\
+\textit{Budget ceiling} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{(b) Ledger A}} \\
+\textit{$n_t$} & \textit{31} & \textit{15} & \textit{6} & \textit{6} & \textit{18} & \\
+IF & 0.06 & 0.07 & 0.00 & 0.00 & 0.03 & 0.03 \\
+LOF & 0.01 & 0.00 & 0.00 & 0.10 & 0.00 & 0.02 \\
+kNN & 0.49 & 0.47 & 0.00 & 0.13 & 0.34 & 0.29 \\
+HBOS & 0.03 & 0.00 & 0.00 & 0.03 & 0.03 & 0.02 \\
+ECOD & 0.04 & 0.05 & 0.00 & 0.10 & 0.02 & 0.04 \\
+PCA & 0.08 & 0.20 & 0.00 & 1.00 & 0.21 & 0.30 \\
+AE & 0.09 & 0.56 & 0.00 & 1.00 & 0.26 & 0.38 \\
+VAE & 0.05 & 0.25 & 0.00 & 1.00 & 0.26 & 0.31 \\
+AE-emb & 0.37 & 0.23 & 0.03 & 0.20 & 0.16 & 0.20 \\
+\textit{Budget ceiling} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[tbp]
+\caption{Recall within the first 100 postings per injected type, continued from Table~\ref{tab:s-pertype} for ledgers B and D. On ledger D every type holds at least 336 injected rows, so no per-type recall can exceed 0.30.}
+\label{tab:s-pertype-cont}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Detector & T1 & T2 & T3 & T4 & T5 & FSR@100 \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{(c) Ledger B}} \\
+\textit{$n_t$} & \textit{105} & \textit{53} & \textit{21} & \textit{21} & \textit{63} & \\
+IF & 0.02 & 0.04 & 0.00 & 0.00 & 0.00 & 0.04 \\
+LOF & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+kNN & 0.29 & 0.20 & 0.01 & 0.00 & 0.01 & 0.31 to 0.32 \\
+HBOS & 0.02 & 0.01 & 0.00 & 0.02 & 0.01 & 0.03 \\
+ECOD & 0.04 & 0.02 & 0.01 & 0.12 & 0.00 & 0.08 \\
+PCA & 0.01 & 0.00 & 0.00 & 1.00 & 0.00 & 0.21 \\
+AE & 0.01 & 0.01 & 0.00 & 1.00 & 0.01 & 0.22 \\
+VAE & 0.01 & 0.00 & 0.00 & 1.00 & 0.03 & 0.23 \\
+AE-emb & 0.10 & 0.08 & 0.05 & 0.04 & 0.11 & 0.23 \\
+\textit{Budget ceiling} & \textit{0.95} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \textit{1.00} & \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{(d) Ledger D}} \\
+\textit{$n_t$} & \textit{1,680} & \textit{840} & \textit{336} & \textit{336} & \textit{1,008} & \\
+IF & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.106 to 0.114 \\
+LOF & 0.00 & 0.00 & 0.00 & 0.03 & 0.00 & 0.106 to 0.114 \\
+kNN & 0.01 & 0.01 & 0.00 & 0.00 & 0.00 & 0.284 to 0.344 \\
+HBOS & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.036 to 0.044 \\
+ECOD & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.046 to 0.054 \\
+PCA & 0.00 & 0.00 & 0.00 & 0.29 & 0.00 & 0.200 to 0.226 \\
+AE & 0.00 & 0.00 & 0.00 & 0.29 & 0.00 & 0.200 to 0.226 \\
+VAE & 0.00 & 0.00 & 0.00 & 0.29 & 0.00 & 0.200 to 0.226 \\
+AE-emb & 0.01 & 0.01 & 0.01 & 0.00 & 0.01 & 0.266 to 0.274 \\
+\textit{Budget ceiling} & \textit{0.06} & \textit{0.12} & \textit{0.30} & \textit{0.30} & \textit{0.10} & \\
+\bottomrule
+\end{tabular}
+\end{table}

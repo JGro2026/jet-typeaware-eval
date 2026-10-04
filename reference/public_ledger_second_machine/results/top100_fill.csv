@@ -1,0 +1,15 @@
+,anomalous,normal with rare account (<1000 lines),other normal
+IF,8,24,68
+LOF,11,12,77
+kNN,17,6,77
+HBOS,4,96,0
+ECOD,4,96,0
+PCA,3,97,0
+AE-pyod,3,97,0
+VAE-pyod,2,98,0
+AE-emb,49,7,44
+DECOMP,55,29,16
+AVG,36,25,39
+DECOMP+ctx,39,28,33
+LINK (post-hoc),54,2,44
+LGBM-ceiling,84,0,16

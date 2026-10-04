@@ -1,0 +1,42 @@
+\begin{table}[tbp]
+\caption{Public ledger, ranking inside the four journal entry testing rule populations. Each population is the entry set that one rule returns; inside it the rule attribute is constant, so the ranking cannot use it. Rule precision is the share of anomalous entries in the population, which is what plain rule matching delivers. Means over seeds for the stochastic detectors; bold marks the best unsupervised detector per column.}
+\label{tab:s-rules}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & J1 & J2 & J3 & J4 \\
+\midrule
+Rule & \makecell[r]{top-n\\amounts} & high cash & \makecell[r]{delayed\\entry} & \makecell[r]{weekend or\\non-working hours} \\
+Entries & 2,000 & 402 & 8,207 & 16,493 \\
+Anomalies & 196 & 190 & 310 & 415 \\
+Rule precision & 0.098 & 0.473 & 0.038 & 0.025 \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{(a) P@100 inside the population}} \\
+IF & 0.40 & 0.53 & 0.06 & 0.08 \\
+LOF & 0.42 & 0.84 & 0.01 & 0.12 \\
+kNN & 0.41 & \textbf{0.87} & 0.16 & 0.21 \\
+HBOS & 0.41 & 0.56 & 0.13 & 0.16 \\
+ECOD & 0.27 & 0.60 & 0.17 & 0.22 \\
+PCA & 0.16 & 0.40 & 0.19 & 0.22 \\
+AE & 0.23 & 0.74 & 0.17 & 0.22 \\
+VAE & 0.26 & 0.74 & 0.18 & \textbf{0.23} \\
+AE-emb & \textbf{0.63} & 0.83 & \textbf{0.22} & 0.22 \\
+\addlinespace
+\textit{LightGBM reference} & 0.96 & 0.93 & 0.87 & 0.92 \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{(b) Average precision inside the population}} \\
+IF & \textbf{0.435} & 0.576 & 0.086 & 0.065 \\
+LOF & 0.244 & 0.773 & 0.032 & 0.044 \\
+kNN & 0.372 & \textbf{0.774} & 0.126 & 0.085 \\
+HBOS & 0.419 & 0.603 & 0.097 & 0.082 \\
+ECOD & 0.278 & 0.617 & 0.099 & 0.107 \\
+PCA & 0.369 & 0.485 & 0.122 & 0.112 \\
+AE & 0.287 & 0.686 & \textbf{0.139} & \textbf{0.144} \\
+VAE & 0.333 & 0.680 & 0.135 & 0.135 \\
+AE-emb & 0.404 & 0.768 & 0.098 & 0.082 \\
+\addlinespace
+\textit{LightGBM reference} & 0.893 & 0.834 & 0.687 & 0.761 \\
+\bottomrule
+\end{tabular}
+\end{table}

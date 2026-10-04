@@ -1,0 +1,4 @@
+{'det': 'IF', 'seed': 2, 'runtime_s': 3.66}
+{'det': 'AE-pyod', 'seed': 2, 'runtime_s': 160.4}
+{'det': 'VAE-pyod', 'seed': 2, 'runtime_s': 149.37}
+{'det': 'AE-emb', 'seed': 2, 'runtime_s': 89.69}

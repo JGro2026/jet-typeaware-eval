@@ -1,0 +1,11 @@
+detector,anomalous_seed0,normal_rare_account_seed0,other_normal_seed0,anomalous_mean,normal_rare_account_mean,other_normal_mean,n_seeds,reference_only
+IF,8,24,68,7.666666666666667,24.0,68.33333333333333,3,False
+LOF,11,12,77,11.0,12.0,77.0,1,False
+kNN,17,6,77,17.0,6.0,77.0,1,False
+HBOS,4,96,0,4.0,96.0,0.0,1,False
+ECOD,4,96,0,4.0,96.0,0.0,1,False
+PCA,3,97,0,3.0,97.0,0.0,1,False
+AE,3,97,0,2.3333333333333335,97.66666666666667,0.0,3,False
+VAE,1,99,0,1.6666666666666667,98.33333333333333,0.0,3,False
+AE-emb,19,53,28,40.0,31.333333333333332,28.666666666666668,3,False
+LightGBM ceiling,84,0,16,83.0,0.0,17.0,3,True

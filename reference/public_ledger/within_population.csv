@@ -1,0 +1,57 @@
+population,entries,anomalies,rule precision,detector,P@25,P@50,P@100,AP
+J1 top-n amounts,2000,196,0.098,IF,0.12,0.307,0.4,0.435
+J1 top-n amounts,2000,196,0.098,LOF,0.32,0.44,0.42,0.244
+J1 top-n amounts,2000,196,0.098,kNN,0.4,0.36,0.41,0.372
+J1 top-n amounts,2000,196,0.098,HBOS,0.08,0.32,0.41,0.419
+J1 top-n amounts,2000,196,0.098,ECOD,0.08,0.24,0.27,0.278
+J1 top-n amounts,2000,196,0.098,PCA,0.08,0.16,0.16,0.369
+J1 top-n amounts,2000,196,0.098,AE-pyod,0.067,0.14,0.227,0.287
+J1 top-n amounts,2000,196,0.098,VAE-pyod,0.067,0.147,0.263,0.333
+J1 top-n amounts,2000,196,0.098,AE-emb,0.68,0.747,0.627,0.404
+J1 top-n amounts,2000,196,0.098,DECOMP,0.08,0.38,0.57,0.471
+J1 top-n amounts,2000,196,0.098,AVG,0.307,0.613,0.663,0.51
+J1 top-n amounts,2000,196,0.098,DECOMP+ctx,0.08,0.38,0.55,0.467
+J1 top-n amounts,2000,196,0.098,LINK (post-hoc),0.56,0.64,0.66,0.43
+J1 top-n amounts,2000,196,0.098,LGBM-ceiling,0.933,0.967,0.96,0.893
+J2 high cash,402,190,0.473,IF,0.693,0.607,0.533,0.576
+J2 high cash,402,190,0.473,LOF,1.0,0.98,0.84,0.773
+J2 high cash,402,190,0.473,kNN,0.92,0.92,0.87,0.774
+J2 high cash,402,190,0.473,HBOS,0.64,0.58,0.56,0.603
+J2 high cash,402,190,0.473,ECOD,0.72,0.62,0.6,0.617
+J2 high cash,402,190,0.473,PCA,0.64,0.42,0.4,0.485
+J2 high cash,402,190,0.473,AE-pyod,0.92,0.96,0.743,0.686
+J2 high cash,402,190,0.473,VAE-pyod,0.92,0.933,0.737,0.68
+J2 high cash,402,190,0.473,AE-emb,1.0,0.993,0.833,0.768
+J2 high cash,402,190,0.473,DECOMP,0.72,0.78,0.7,0.687
+J2 high cash,402,190,0.473,AVG,1.0,0.973,0.773,0.772
+J2 high cash,402,190,0.473,DECOMP+ctx,0.72,0.78,0.7,0.687
+J2 high cash,402,190,0.473,LINK (post-hoc),0.96,0.92,0.95,0.743
+J2 high cash,402,190,0.473,LGBM-ceiling,0.8,0.9,0.93,0.834
+J3 delayed entry,8207,310,0.038,IF,0.053,0.04,0.057,0.086
+J3 delayed entry,8207,310,0.038,LOF,0.0,0.0,0.01,0.032
+J3 delayed entry,8207,310,0.038,kNN,0.08,0.12,0.16,0.126
+J3 delayed entry,8207,310,0.038,HBOS,0.12,0.16,0.13,0.097
+J3 delayed entry,8207,310,0.038,ECOD,0.24,0.24,0.17,0.099
+J3 delayed entry,8207,310,0.038,PCA,0.36,0.26,0.19,0.122
+J3 delayed entry,8207,310,0.038,AE-pyod,0.36,0.26,0.173,0.139
+J3 delayed entry,8207,310,0.038,VAE-pyod,0.36,0.26,0.183,0.135
+J3 delayed entry,8207,310,0.038,AE-emb,0.493,0.32,0.223,0.098
+J3 delayed entry,8207,310,0.038,DECOMP,0.36,0.3,0.27,0.126
+J3 delayed entry,8207,310,0.038,AVG,0.307,0.253,0.2,0.125
+J3 delayed entry,8207,310,0.038,DECOMP+ctx,0.32,0.3,0.27,0.124
+J3 delayed entry,8207,310,0.038,LINK (post-hoc),0.8,0.78,0.8,0.234
+J3 delayed entry,8207,310,0.038,LGBM-ceiling,0.773,0.833,0.867,0.687
+J4 weekend or non-working hours,16493,415,0.025,IF,0.067,0.093,0.083,0.065
+J4 weekend or non-working hours,16493,415,0.025,LOF,0.08,0.1,0.12,0.044
+J4 weekend or non-working hours,16493,415,0.025,kNN,0.0,0.1,0.21,0.085
+J4 weekend or non-working hours,16493,415,0.025,HBOS,0.28,0.2,0.16,0.082
+J4 weekend or non-working hours,16493,415,0.025,ECOD,0.28,0.18,0.22,0.107
+J4 weekend or non-working hours,16493,415,0.025,PCA,0.6,0.32,0.22,0.112
+J4 weekend or non-working hours,16493,415,0.025,AE-pyod,0.6,0.327,0.223,0.144
+J4 weekend or non-working hours,16493,415,0.025,VAE-pyod,0.6,0.32,0.227,0.135
+J4 weekend or non-working hours,16493,415,0.025,AE-emb,0.427,0.327,0.223,0.082
+J4 weekend or non-working hours,16493,415,0.025,DECOMP,0.6,0.54,0.51,0.143
+J4 weekend or non-working hours,16493,415,0.025,AVG,0.213,0.173,0.187,0.105
+J4 weekend or non-working hours,16493,415,0.025,DECOMP+ctx,0.24,0.54,0.39,0.153
+J4 weekend or non-working hours,16493,415,0.025,LINK (post-hoc),0.88,0.9,0.9,0.576
+J4 weekend or non-working hours,16493,415,0.025,LGBM-ceiling,0.813,0.893,0.923,0.761
