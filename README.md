@@ -1,6 +1,7 @@
 # jet-typeaware-eval
 
-Reproduction code for **"Which anomalies does an auditor see? Type-aware evaluation of journal entry anomaly detectors under a review budget"** (anonymized for review).
+Reproduction code for **"Machine learning for journal entry testing: A type-aware
+evaluation of anomaly detectors under a review budget"** (anonymized for review).
 The repository takes the raw ledgers and produces every number, table and figure of the paper and its supplement with one command. It contains:
 - the type-aware measures (per-type recall against the budget ceiling, type coverage TC@k, fair-share type recall FSR@k, first-hit ranks);
 - the two benchmarks: four client ledgers with injected, typed anomalies and a public synthetic ledger;
